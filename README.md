@@ -1,10 +1,10 @@
 # libcal-bookings-viewer
 A custom view for our LibCal bookings page that utilizes the Springshare LibCal API, HTML, and JS.
 
-##Project Origin and Specs
+## Project Origin and Specs
 
-##Config
+## Config
 
-##Credentials
+## Credentials
 
-##Additional Resources
+## Additional Resources
