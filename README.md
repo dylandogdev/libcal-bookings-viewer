@@ -14,14 +14,15 @@ The LibCal API docs recommend exposing the secret in cases of read-only apps. I 
 ## Additional Resources
 
 
-### Before:
+### New Dashboard:
 
 ![Screenshot](screengrabs/screen_grab_1.png)
 
-### After:
+
+### Old Dashboard w/ iFrames
 
 ![Screenshot](screengrabs/screen_grab_2.png)
 
-### Continued because iFrames...
+### ... and continued because iFrames left so much whitespace...:
 
 ![Screenshot](screengrabs/screen_grab_3.png)
