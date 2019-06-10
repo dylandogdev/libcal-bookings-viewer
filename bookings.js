@@ -1,11 +1,15 @@
+var baseUrl = "https://libcal.eku.edu/";
+    
 $(document).ready(function () {
     getToken();
+    var exts = [apiExt, spaceExt, bookingsExt];
+    buildUrl(baseUrl, exts);
 });
 
 function getToken() {
     $(".table-success").remove();
     $.ajax({
-        url: 'https://libcal.eku.edu/1.1/oauth/token',
+        url: baseUrl + '1.1/oauth/token',
         type: "POST",
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify({
@@ -24,7 +28,7 @@ function getToken() {
 
 function loadBookings(token) {
     $.ajax({
-        url: 'https://libcal.eku.edu/1.1/space/bookings',
+        url: baseUrl + '1.1/space/bookings',
         method: 'GET',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'BEARER ' + token);
@@ -66,14 +70,14 @@ function loadBookings(token) {
 //get the cids for the configured array of locations 
 function getRoomName(roomId, counter, token) {
     $.ajax({
-        url: 'https://libcal.eku.edu/1.1/space/item/' + roomId,
+        url: baseUrl + '1.1/space/item/' + roomId,
         method: 'GET',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'BEARER ' + token);
         },
         success: function (data) {
             $.each(data, function (k, v) {
-                document.getElementById("roomName" + roomId + "-" + counter).innerHTML = "<a href='https://libcal.eku.edu/space/" + roomId + "'>" + v.name + "</a>";
+                document.getElementById("roomName" + roomId + "-" + counter).innerHTML = "<a href='" + baseUrl + "/space/" + roomId + "'>" + v.name + "</a>";
             });
         }
     });
@@ -85,3 +89,4 @@ function lastUpdatedTime() {
         minute: '2-digit'
     }));
 }
+
