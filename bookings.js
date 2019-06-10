@@ -1,12 +1,10 @@
 var baseUrl = "https://libcal.eku.edu/";
     
 $(document).ready(function () {
-    getToken();
-    var exts = [apiExt, spaceExt, bookingsExt];
-    buildUrl(baseUrl, exts);
+    getBookings();
 });
 
-function getToken() {
+function getBookings() {
     $(".table-success").remove();
     $.ajax({
         url: baseUrl + '1.1/oauth/token',
@@ -20,13 +18,13 @@ function getToken() {
         success: function (data) {
             var jsonData = JSON.parse(data);
             var token = jsonData.access_token;
-            loadBookings(token);
+            loadTable(token);
             lastUpdatedTime();
         }
     });
 }
 
-function loadBookings(token) {
+function loadTable(token) {
     $.ajax({
         url: baseUrl + '1.1/space/bookings',
         method: 'GET',
