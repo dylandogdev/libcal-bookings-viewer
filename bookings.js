@@ -42,8 +42,8 @@ function loadBookings(token) {
                         hour: '2-digit',
                         minute: '2-digit'
                     }) + '</td><td>' +
-                    v.firstName + ' ' + v.lastName + '</td><td>' +
-                    v.email + '</td><td>' +
+                    v.firstName + ' ' + v.lastName + '</td><td><a href="mailto:' + v.email + '">' +
+                    v.email + '</a></td><td>' +
                     v.status + '</td></tr>';
                 if (v.status.includes('Cancelled')) {
                     var row = '<tr class="table-danger">';
@@ -73,7 +73,7 @@ function getRoomName(roomId, counter, token) {
         },
         success: function (data) {
             $.each(data, function (k, v) {
-                document.getElementById("roomName" + roomId + "-" + counter).innerHTML = v.name;
+                document.getElementById("roomName" + roomId + "-" + counter).innerHTML = "<a href='https://libcal.eku.edu/space/" + roomId + "'>" + v.name + "</a>";
             });
         }
     });
