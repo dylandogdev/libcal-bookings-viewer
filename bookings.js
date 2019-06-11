@@ -1,11 +1,14 @@
 var baseUrl = "https://libcal.eku.edu/";
     
 $(document).ready(function () {
+    loadDate();
     getBookings();
 });
 
 function getBookings() {
     $(".table-success").remove();
+    $(".table-warning").remove();
+    $(".table-danger").remove();
     $.ajax({
         url: baseUrl + '1.1/oauth/token',
         type: "POST",
@@ -80,7 +83,7 @@ function getRoomName(roomId, counter, token) {
         },
         success: function (data) {
             $.each(data, function (k, v) {
-                document.getElementById("roomName" + roomId + "-" + counter).innerHTML = "<a href='" + baseUrl + "/space/" + roomId + "'>" + v.name + "</a>";
+                document.getElementById("roomName" + roomId + "-" + counter).innerHTML = "<a href='" + baseUrl + "space/" + roomId + "'>" + v.name + "</a>";
             });
         }
     });
@@ -92,5 +95,11 @@ function lastUpdatedTime() {
         hour: '2-digit',
         minute: '2-digit'
     }));
+}
+
+function loadDate() {
+    var date = new Date();
+    var options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+    $(".todaysDate").append(date.toLocaleString('en-US', options));
 }
 
