@@ -67,7 +67,12 @@ function loadTable(token) {
 
 //get the cids for the configured array of locations 
 function getRoomName(roomId, counter, token) {
-    $.ajax({
+    if(roomId == "18252") {
+        document.getElementById("roomName" + roomId + "-" + counter).innerHTML = "Grand Reading Room";
+    } else if (roomId == "18253") {
+        document.getElementById("roomName" + roomId + "-" + counter).innerHTML = "First Floor Study";
+    } else {
+        $.ajax({
         url: baseUrl + '1.1/space/item/' + roomId,
         method: 'GET',
         beforeSend: function (xhr) {
@@ -79,6 +84,7 @@ function getRoomName(roomId, counter, token) {
             });
         }
     });
+    }
 }
 
 function lastUpdatedTime() {
